@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         max:50
     },
-    from:{
+    country:{
         type:String,
         max:50
     },
