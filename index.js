@@ -3,7 +3,8 @@ const app = express();
 const mongoose = require("mongoose")
 const dotenv = require("dotenv");
 const helmet = require("helmet");
-const morgan = require("morgan")
+const morgan = require("morgan");
+const cors = require('cors')
 const port = 8000;
 const userRoute = require("./routes/users");
 const authRouter =require("./routes/auth")
@@ -13,7 +14,11 @@ mongoose.connect(process.env.MONGO_URL).then(() => console.log("Connected Databa
 
 
 //Middle
+let corsOptions = {
+    origin : ['http://localhost:5173'],
+ }
 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(helmet())
 app.use(morgan("common"))
