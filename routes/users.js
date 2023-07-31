@@ -32,8 +32,6 @@ router.put("/:id", async (req, res) => {
 // delete user
 
 router.delete("/:id", async (req, res) => {
-    console.log(req.body)
-    console.log(req.params)
     if (req.body.userId === req.params.id || req.body.isAdmin) {
         try {
             const user = await User.deleteOne({ _id: req.params.id })
@@ -52,10 +50,8 @@ router.delete("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
     const userId = req.query.userId
     const username = req.query.username
-console.log(req.query.username)
 try {
     const user = userId ? await User.findById(userId) : await User.findOne({username:username});
-    console.log(user)
     // console.log(req.query)
         const { password, updatedAt, ...other } = user._doc
         res.status(200).json(other)

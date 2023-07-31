@@ -49,8 +49,8 @@ router.post("/login", async (req, res) => {
                 res.status(404).json({ error: "Wrong Password" });
             }
             else {
-                const {email} = user
-                res.status(200).json({ user: email })
+                const {password, ...other} = user._doc
+                res.status(200).json({...other})
             }
         }
         else {
